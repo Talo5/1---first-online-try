@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pay 1£ to see how many people paid 1£</title>
-  <style>
-    /* styles for the body */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f1f1f1;
-      text-align: center;
-    }
-    /* styles for the header */
-    h1 {
-      font-size: 48px;
-      margin-top: 40px;
-    }
-    /* styles for the paragraph */
-    p {
-      font-size: 24px;
-      margin-bottom: 40px;
-    }
-    /* styles for the button */
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border-radius: 20px;
-      box-shadow: 2px 2px 2px grey;
-      padding: 12px 20px;
-      font-size: 24px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-bottom: 40px;
-    }
-    
-    button:hover {
-      background-color: #3e8e41;
-      box-shadow: 4px 4px 4px grey;
-    }
-    /* styles for the counter */
-    #counter {
-      font-size: 72px;
-      font-weight: bold;
-      margin-bottom: 40px;
-      display: none;
-    }
-    /* styles for the share button */
-    #share-button {
-      background-color: #4CAF50;
-      color: white;
-      border-radius: 20px;
-      box-shadow: 2px 2px 2px grey;
-      padding: 12px 20px;
-      font-size: 24px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 40px;
-    }
-    #share-button:hover {
-      background-color: #3e8e41;
-      box-shadow: 4px 4px 4px grey;
-    }
-  </style>
+	<meta charset="UTF-8">
+	<title>Pay 1£ to see how many people paid 1£</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f7f7f7;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 50px 20px;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 40px;
+			margin-top: 0;
+		}
+
+		.button {
+			display: inline-block;
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 24px;
+			border-radius: 25px;
+			border: none;
+			font-size: 20px;
+			margin-top: 20px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		.button:hover {
+			background-color: #3e8e41;
+		}
+
+		.share-button {
+			background-color: #93ccea;
+			color: white;
+			padding: 12px 24px;
+			border-radius: 25px;
+			border: none;
+			font-size: 20px;
+			margin-top: 20px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		.share-button:hover {
+			background-color: #6c9dc9;
+		}
+
+		.counter {
+			font-size: 60px;
+			margin-top: 50px;
+			display: none;
+		}
+	</style>
 </head>
-
 <body>
-  <h1>Pay 1£ to see how many people paid 1£</h1>
-  <p>Pay 1£ with PayPal to join a growing community of people who have paid 1£ to see how many others have done the same!</p>
-  
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="KUWNWP9936MR8">
-    <button type="submit" name="submit" onclick="setTimeout(updateCounter, 10000)">
-      Pay 1£ with PayPal
-    </button>
-    <img alt="" border="0" src="https://www.paypalobjects.com/he_IL/i/scr/pixel.gif" width="1" height="1">
-  </form>
-  
-  <div id="counter">0</div>
-  
-  <button id="share-button" onclick="copyUrl()">Share with the world</button>
+	<div class="container">
+		<h1>Pay 1£ to see how many people paid 1£</h1>
+		<button id="paypal-button" class="button">Pay 1£ with PayPal</button>
+		<p id="status"></p>
+		<p id="counter" class="counter">0</p>
+		<button id="share-button" class="share-button">Share with the world</button>
+	</div>
 
-  <script>
-    let count = 0;
-    function updateCounter() {
-      count++;
-      document.getElementById("counter").innerHTML = count;
-      document.getElementById("counter").style.display = "block";
-      localStorage.setItem("counter", count);
-    }
-    
-    function copyUrl() {
-      const url = window.location.href;
-      navigator.clipboard.writeText(url);
-      alert("URL copied to clipboard!");
-    }
-  </script>
+	<script>
+		let counterValue = 0;
+		const paypalButton = document.getElementById('paypal-button');
+		const status = document.getElementById('status');
+		const counter = document.getElementById('counter');
+		const shareButton = document.getElementById('share-button');
+
+		function handlePaypalClick() {
+			setTimeout(() => {
+				counter.style.display = 'block';
+			}, 10000);
+			counterValue++;
+			status.innerText = 'Thank you for your payment!';
+			counter.innerText = counterValue;
+		}
+
+		function handleShareClick() {
+			navigator.clipboard.writeText(window.location.href);
+			alert('Link copied to clipboard!');
+		}
+
+		paypalButton.addEventListener('click', handlePaypalClick);
+		shareButton.addEventListener('click', handleShareClick);
+	</script>
 </body>
 </html>
