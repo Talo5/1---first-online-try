@@ -4,38 +4,47 @@
 	<title>Pay 1£ to see how many people paid 1£</title>
 	<style>
 		body {
-			background-color: #051821;
-			color: #F58800;
-			font-family: Arial, sans-serif;
-			font-size: 16px;
+			background-color: #F4F4F4;
+			color: #333;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 18px;
+			line-height: 1.6;
 			text-align: center;
 		}
-		
+
+		h1 {
+			font-size: 36px;
+			margin-top: 60px;
+			margin-bottom: 40px;
+		}
+
 		button {
-			background-color: #1A4645;
+			background-color: #008CBA;
 			border: none;
-			border-radius: 20px;
-			box-shadow: 5px 5px 10px #26687;
-			color: #F58800;
+			border-radius: 30px;
+			box-shadow: 0px 10px 20px rgba(0, 140, 186, 0.5);
+			color: #FFF;
 			cursor: pointer;
 			font-size: 20px;
-			padding: 10px 20px;
+			padding: 16px 36px;
 			transition: transform 0.3s, box-shadow 0.3s;
+			margin-bottom: 24px;
 		}
-		
+
 		button:hover {
-			transform: scale(1.05);
-			box-shadow: 10px 10px 20px #26687;
+			transform: translateY(-3px);
+			box-shadow: 0px 15px 30px rgba(0, 140, 186, 0.6);
 		}
-		
+
 		button:focus {
 			outline: none;
 		}
-		
+
 		.counter {
 			display: none;
-			font-size: 36px;
-			margin-top: 50px;
+			font-size: 64px;
+			margin-top: 40px;
+			color: #008CBA;
 		}
 	</style>
 	<script>
@@ -58,17 +67,19 @@
 	</script>
 </head>
 <body>
-	<h1>Pay 1£ to see how many people paid 1£</h1>
-	<button onclick="setTimeout(incrementCounter, 10000);">
-		Pay with PayPal
-		<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
-			<input type='hidden' name='cmd' value='_s-xclick'>
-			<input type='hidden' name='hosted_button_id' value='KUWNWP9936MR8'>
-			<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
-			<img alt='' border='0' src='https://www.paypalobjects.com/he_IL/i/scr/pixel.gif' width='1' height='1'>
-		</form>
-	</button>
-	<button onclick="copyUrl();">Share the love</button>
-	<div id="counter" class="counter">0</div>
+	<div style="max-width: 800px; margin: 0 auto;">
+		<h1>Pay 1£ to see how many people paid 1£</h1>
+		<button onclick="setTimeout(incrementCounter, 10000);">
+			Pay with PayPal
+			<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+				<input type='hidden' name='cmd' value='_s-xclick'>
+				<input type='hidden' name='hosted_button_id' value='KUWNWP9936MR8'>
+				<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+				<img alt='' border='0' src='https://www.paypalobjects.com/he_IL/i/scr/pixel.gif' width='1' height='1'>
+			</form>
+		</button>
+		<button onclick="copyUrl();">Share the love</button>
+		<div id="counter" class="counter">0</div>
+	</div>
 </body>
 </html>
