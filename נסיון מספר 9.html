@@ -1,75 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pay 1 pound to see how many people paid 1 pound</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-		body {
-			background-color: #b993d6;
-			font-family: Arial, sans-serif;
-			margin: 0;
-		}
-		.container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-		}
-		.title {
-			color: white;
-			font-size: 36px;
-			font-weight: bold;
-			text-align: center;
-			margin-bottom: 50px;
-			text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-		}
-		.button {
-			display: inline-block;
-			padding: 12px 24px;
-			margin: 10px;
-			border-radius: 25px;
-			background-color: white;
-			color: #b993d6;
-			font-size: 18px;
-			font-weight: bold;
-			text-align: center;
-			text-decoration: none;
-			box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-			transition: all 0.2s ease-in-out;
-		}
-		.button:hover {
-			background-color: #b993d6;
-			color: white;
-			cursor: pointer;
-		}
-	</style>
+  <title>Pay 1£ to see how many people paid 1£</title>
+  <style>
+    /* styles for the button */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 20px;
+      box-shadow: 2px 2px 2px grey;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #3e8e41;
+      box-shadow: 4px 4px 4px grey;
+    }
+    
+    /* styles for the counter */
+    #counter {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
+
 <body>
-	<div class="container">
-		<h1 class="title">Pay 1 pound to see how many people paid 1 pound</h1>
-		
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="KUWNWP9936MR8">
-			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - הדרך הקלה והבטוחה יותר לשלם באינטרנט!">
-			<img alt="" border="0" src="https://www.paypalobjects.com/he_IL/i/scr/pixel.gif" width="1" height="1">
-		</form>
-		
-		<button class="button" onclick="copyUrl()">Share with friends and family</button>
-		
-		<script>
-			function copyUrl() {
-				var url = window.location.href;
-				var dummy = document.createElement('input');
-				document.body.appendChild(dummy);
-				dummy.value = url;
-				dummy.select();
-				document.execCommand('copy');
-				document.body.removeChild(dummy);
-				alert('Link copied to clipboard!');
-			}
-		</script>
-	</div>
+  <h1>Pay 1£ to see how many people paid 1£</h1>
+  <p>Pay 1£ with PayPal to join a growing community of people who have paid 1£ to see how many others have done the same!</p>
+  
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="KUWNWP9936MR8">
+    <button type="submit" name="submit" onclick="updateCounter()">
+      Pay 1£ with PayPal
+    </button>
+    <img alt="" border="0" src="https://www.paypalobjects.com/he_IL/i/scr/pixel.gif" width="1" height="1">
+  </form>
+  
+  <div id="counter">0</div>
+  
+  <script>
+    let count = 0;
+    function updateCounter() {
+      count++;
+      document.getElementById("counter").innerHTML = count;
+    }
+  </script>
 </body>
 </html>
