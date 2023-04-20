@@ -45,6 +45,25 @@
       font-size: 72px;
       font-weight: bold;
       margin-bottom: 40px;
+      display: none;
+    }
+    
+    /* styles for the share button */
+    #share-button {
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 20px;
+      box-shadow: 2px 2px 2px grey;
+      padding: 12px 20px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 40px;
+    }
+    
+    #share-button:hover {
+      background-color: #3e8e41;
+      box-shadow: 4px 4px 4px grey;
     }
   </style>
 </head>
@@ -64,12 +83,23 @@
   
   <div id="counter">0</div>
   
+  <button id="share-button" onclick="copyUrl()">Share with the world</button>
+
   <script>
     let count = 0;
     function updateCounter() {
       count++;
       document.getElementById("counter").innerHTML = count;
+      document.getElementById("counter").style.display = "block";
+      localStorage.setItem("counter", count);
     }
+    
+    function copyUrl() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url);
+      alert("URL copied to clipboard!");
+    }
+  
   </script>
 </body>
 </html>
